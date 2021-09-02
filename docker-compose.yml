@@ -3,7 +3,7 @@ version: "3"  # optional since v1.27.0
 services:
   client-service:
     image: ojjsaw/grpc-client:latest
-    command: --address=localhost
+    command: --address=${AI_SERVICE_SERVICE_HOST}
     links:
       - "ai-service"
     depends_on:
