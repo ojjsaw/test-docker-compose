@@ -1,12 +1,22 @@
 version: "3"  # optional since v1.27.0
 
 services:
+  client-service:
+    image: ojjsaw/grpc-client:latest
+    command: --address=localhost
+    links:
+      - "ai-service"
+    depends_on:
+      - ai-service
+    networks:
+      - mynet
   ai-service:
     image: ojjsaw/classifyserver:latest
     ports:
       - "9001:9001"
       - "8001:8001"
-  client-service:
-    image: ojjsaw/grpc-client:latest
-    links:
-      - "ai-service"
+    networks:
+      - mynet
+
+networks:
+  mynet:
