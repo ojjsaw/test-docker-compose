@@ -5,7 +5,7 @@ services:
     image: ojjsaw/classifyserver:latest
     ports:
       - "9001:9001"
-      - "8001:8001"
+      - "8005:8001"
   client-service:
     image: ojjsaw/rest-client:latest
-    command: --rest_url http://ai-service
+    command: --rest_url=http://ai-service --rest_port=8005
